@@ -506,7 +506,7 @@
           <h2>If you have built, tried to build, or thought hard about it, <em>we want to hear from you</em>.</h2>
           <p class="preamble">We are reading these and replying personally. Specifics, not pitches. If you have shut something down, or been displaced from your work and are trying to figure out what comes next, that is exactly the conversation we want.</p>
 
-          <form action="mailto:hello@goodfutures.co" method="post" enctype="text/plain">
+          <form action="https://formspree.io/f/xkoyqvnl" method="POST">
             <div class="field">
               <label data-num="01">Name</label>
               <input type="text" name="name" required>
@@ -571,6 +571,16 @@
     io.observe(el);
   });
 </script>
-
+const form = document.querySelector('form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  await fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+  form.innerHTML = '<p style="font-family: Fraunces, serif; font-size: 20px; color: var(--ink-soft); line-height: 1.6;">Received. We will be in touch.</p>';
+});
 </body>
 </html>
